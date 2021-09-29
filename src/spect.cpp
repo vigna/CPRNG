@@ -8,8 +8,9 @@ See <http://creativecommons.org/publicdomain/zero/1.0/>. */
 
 /* Prints approximated figures of merit using the LLL lattice-reduction
    algorithm. If MULT is defined, computes figures of merit for an MCG with
-   power-of-two modulus; otherwise, for a full-period congruential generator
-   (including LCGs with power-of-two moduli and MCGs with prime moduli).
+   power-of-two modulus; otherwise, for a full-period congruential generator,
+   including LCGs with power-of-two moduli and MCGs with prime moduli (note
+   that in the latter case no primitivity check is performed).
 
    See also Karl Entacher & Thomas Schell's code associated with the paper
 
@@ -37,8 +38,9 @@ int main(int argc, char *argv[]) {
 #ifdef MULT
 		cerr << "figures of merit for MCGs with power-of-two moduli" << endl;
 #else
-		cerr << "figures of merit for full-period congruential generators (including" << endl;
-		cerr << "LCGs with power-of-two moduli and MCGs with prime moduli) " << endl;
+		cerr << "figures of merit for full-period congruential generators, including" << endl;
+		cerr << "LCGs with power-of-two moduli and MCGs with prime moduli (note " << endl;
+		cerr << "that in the latter case no primitivity check is performed)," << endl;
 #endif
 		cerr << "up to the specified maximum dimension for the given lag." << endl;
 		cerr << "A lag of one gives the standard spectral test. Prints the minimum" << endl;

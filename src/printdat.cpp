@@ -9,8 +9,9 @@ See <http://creativecommons.org/publicdomain/zero/1.0/>. */
 /* Writes input files for LatticeTester (https://github.com/umontreal-simul/latticetester).
 
    If MULT is defined, outputs data for an MCG with power-of-two modulus;
-   otherwise, for a full-period congruential generator (including LCGs with
-   power-of-two moduli and MCGs with prime moduli). */
+   otherwise, for a full-period congruential generator, including LCGs with
+   power-of-two moduli and MCGs with prime moduli (note that in the latter case
+   no primitivity check is performed). */
 
 #include <iostream>
 #include <fstream>
@@ -27,8 +28,9 @@ int main(int argc, char *argv[]) {
 #ifdef MULT
 		cerr << "figures of merit for MCGs with power-of-two moduli" << endl;
 #else
-		cerr << "figures of merit for full-period congruential generators (including" << endl;
-		cerr << "LCGs with power-of-two moduli and MCGs with prime moduli) " << endl;
+		cerr << "figures of merit for full-period congruential generators, including" << endl;
+		cerr << "LCGs with power-of-two moduli and MCGs with prime moduli (note " << endl;
+		cerr << "that in the latter case no primitivity check is performed)," << endl;
 #endif
 		cerr << "up to the specified maximum dimension for the given lag." << endl;
 		exit(1);
