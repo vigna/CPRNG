@@ -3,7 +3,7 @@ CPRNG
 
 This repository contains data and code associated with the paper
 [“Computationally easy, spectrally good multipliers for congruential
-pseudorandom number generators”](https://doi.org/10.1002/spe.303), by Guy
+pseudorandom number generators”](https://doi.org/10.1002/spe.3030), by Guy
 Steele and Sebastiano Vigna.
 
 The directory `src` contains the code used to sample multipliers.

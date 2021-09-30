@@ -3,7 +3,7 @@ Selection Scripts
 
 To reproduce the selection procedure used by [“Computationally easy,
 spectrally good multipliers for congruential pseudorandom number
-generators”](https://doi.org/10.1002/spe.303) and by the LXM PRNG family
+generators”](https://doi.org/10.1002/spe.3030) and by the LXM PRNG family
 of Java 17 described by Guy Steele and Sebastiano Vigna in [“LXM: Better
 Splittable Pseudorandom Number Generators (and Almost as
 Fast)”](https://doi.org/10.1145/3485525) you must run `./filterall.sh` in a
@@ -27,7 +27,7 @@ score in `best_harmonic.txt`).
 
 The tables published in [“Computationally easy, spectrally good
 multipliers for congruential pseudorandom number
-generators”](https://doi.org/10.1002/spe.303) come from the second choice
+generators”](https://doi.org/10.1002/spe.3030) come from the second choice
 of `best_harmonic.txt`.
 
 The multipliers used by the LXM family of Java 17 are once again the
