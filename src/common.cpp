@@ -113,6 +113,20 @@ static ZZ strtoZZ(const char * const s) {
 	return conv<ZZ>(s);
 }
 
+#if defined(__clang__) && defined(__APPLE__)
+
+// https://github.com/libntl/ntl/issues/28
+
+template <> ZZ NTL_NAMESPACE::conv<>(const uint128_t& x) {
+	return conv<ZZ, unsigned long>(uint64_t(x >> 64)) << 64 | conv<ZZ, unsigned long>((uint64_t&)x);
+}
+
+template <> uint128_t NTL_NAMESPACE::conv<>(const ZZ& x) {
+	return uint128_t(conv<unsigned long>(x >> 64 & conv<ZZ>(0xFFFFFFFFFFFFFFFF))) << 64 | conv<unsigned long>(x & conv<ZZ>(0xFFFFFFFFFFFFFFFF));
+}
+
+#else
+
 template <> ZZ NTL::conv<>(const uint128_t& x) {
 	return conv<ZZ>(uint64_t(x >> 64)) << 64 | conv<ZZ>((uint64_t&)x);
 }
@@ -120,6 +134,8 @@ template <> ZZ NTL::conv<>(const uint128_t& x) {
 template <> uint128_t NTL::conv<>(const ZZ& x) {
 	return uint128_t(conv<uint64_t>(x >> 64 & conv<ZZ>(0xFFFFFFFFFFFFFFFF))) << 64 | conv<uint64_t>(x & conv<ZZ>(0xFFFFFFFFFFFFFFFF));
 }
+
+#endif
 
 template <typename T> string hex(T);
 
@@ -134,10 +150,20 @@ template <> string hex<>(ZZ a) {
 	return s;
 }
 
-template <> string hex<>(uint128_t a) {
-	return hex(conv<ZZ>(a));
+#if defined(__clang__) && defined(__APPLE__)
+
+template <> string hex<>(uint64_t a) {
+	return hex(conv<ZZ, unsigned long>(a));
 }
+
+#else
 
 template <> string hex<>(uint64_t a) {
 	return hex(conv<ZZ>(a));
+}
+
+#endif
+
+template <> string hex<>(uint128_t a) {
+	return hex(conv<ZZ, uint128_t>(a));
 }

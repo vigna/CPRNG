@@ -146,7 +146,13 @@ int main(int argc, char *argv[]) {
 		if (random) {
 		    // Insert here your preferred candidate generation scheme
 		    // Random odd multiplier in the range [2^(multiplier_size-1)..2^multiplier_size) whose residual modulo 8 is 5; it fits in multiplier_size bits
+#if defined(__clang__) && defined(__APPLE__)
+
+			// https://github.com/libntl/ntl/issues/28
+			a = ((((conv<ZZ>(0) + (unsigned long)next()) << 192) + ((conv<ZZ>(0) + (unsigned long)next()) << 128) + ((conv<ZZ>(0) + (unsigned long)next()) << 64) + conv<ZZ>((unsigned long)next())) & multiplier_mask) | multiplier_surround_bits;
+#else
 			a = ((((conv<ZZ>(0) + next()) << 192) + ((conv<ZZ>(0) + next()) << 128) + ((conv<ZZ>(0) + next()) << 64) + conv<ZZ>(next())) & multiplier_mask) | multiplier_surround_bits;
+#endif
 		}
 		else a = ((((conv<ZZ>(0) + c) + seed) * 8) & multiplier_mask) | multiplier_surround_bits;
 
