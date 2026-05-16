@@ -1,5 +1,4 @@
-CPRNG
-=====
+# CPRNG
 
 This repository contains data and code associated with the paper
 [“Computationally easy, spectrally good multipliers for congruential
@@ -24,3 +23,9 @@ with 128 bits of state). For each multiplier we list the minimum score
 from dimension 2 to dimension 8, the harmonic score (see the paper) from
 dimension 2 to dimension 8, the multiplier in decimal and hexadecimal
 form, and finally the spectral scores from dimension 2 to dimension 8.
+
+The scores have been computed using [`LatticeTester`]. The code in `src`
+provides just approximate scores based on the Lenstra–Lenstra–Lovász lattice
+basis reduction algorithm.
+
+[LatticeTester]: https://github.com/umontreal-simul/latticetester
